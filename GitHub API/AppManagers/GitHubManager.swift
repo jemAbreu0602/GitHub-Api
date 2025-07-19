@@ -13,11 +13,12 @@ class GitHubManager {
     let authorization = "Authorization"
     let apiVersion = "X-GitHub-Api-Version"
     let version = "2022-11-28"
-    let token = "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"
+    let auth = "d5Om/pi/u8vaW0aktFFQ9ZCa3+JZg/2JsvIWXLEAvolLfNecgCtMehivMz17n6XE9aNA659KbVytTy1mr1iNwksIjU2pq6rnzkne3f6gwCSbR1c1EVRynfCDmFgHu2DK"
 
     func getUsers() -> URLRequest? {
         guard
-            let url = URL(string: "https://api.github.com/users")
+            let url = URL(string: "https://api.github.com/users"),
+            let token = try? AESManager.shared.decrypt(auth)
         else { return nil }
 
         var request = URLRequest(url: url)
