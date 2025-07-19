@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Users-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController title="Users" id="Y6W-OH-hqX" customClass="UsersViewController" customModule="GitHub_API" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KX3-mY-9Tn">
+                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="KX3-mY-9Tn" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="7or-hs-pPr"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="KX3-mY-9Tn" secondAttribute="bottom" id="iiA-2L-G7f"/>
+                            <constraint firstItem="KX3-mY-9Tn" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="kbA-Iy-obi"/>
+                            <constraint firstItem="KX3-mY-9Tn" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="u4k-U4-zmX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="WBv-9f-Ill"/>
+                    <connections>
+                        <outlet property="userListTableView" destination="KX3-mY-9Tn" id="48i-5K-pHK"/>
+                        <segue destination="Bw7-sh-ooi" kind="presentation" identifier="showRepositories" modalPresentationStyle="fullScreen" id="lJZ-zs-4KS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-747" y="-35"/>
+        </scene>
+        <!--Repositories-->
+        <scene sceneID="SGD-8c-H8r">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Repositories" id="Bw7-sh-ooi" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dPJ-Wg-4MQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-107" y="-35"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
