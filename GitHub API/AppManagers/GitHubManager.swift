@@ -13,7 +13,7 @@ class GitHubManager {
     let authorization = "Authorization"
     let apiVersion = "X-GitHub-Api-Version"
     let version = "2022-11-28"
-    let token = "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"
+    let token = "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"
 
     func getUsers() -> URLRequest? {
         guard
