@@ -4,5 +4,6 @@ This is a client app that can view GitHub users and show their repositories usin
 Upon cloning or downloading, please follow the steps below:
  1. open terminal and run `pod update`
  2. open `.xcworkspace` file
+ Please take note that web view can be closed by dragging from top to bottom
 ## Updating
 As mentioned above, I will be updating this project until the said date comes. This is to code every features that I found interesting or better UI/UX wise

@@ -10,10 +10,10 @@ import WebKit
 
 class RepositoriesViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var fullNameLabel: UILabel!
-    @IBOutlet weak var follwersLabel: UILabel!
-    @IBOutlet weak var followingLabel: UILabel!
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var fullNameTextField: UITextField!
+    @IBOutlet weak var followersTextField: UITextField!
+    @IBOutlet weak var followingTextField: UITextField!
     @IBOutlet weak var repositoriesTableView: UITableView!
 
     @IBAction func onClose(_ sender: Any) {
@@ -67,10 +67,25 @@ class RepositoriesViewController: UIViewController {
     }
 
     private func loadUserInfo(_ user: Repositories.UserInfo.Response) {
-        userNameLabel.text = "Username: \(user.login)"
-        fullNameLabel.text = "Fullname: \(user.name)"
-        followingLabel.text = "No. of Followers: \(user.followers)"
-        follwersLabel.text = "Following: \(user.following)"
+        let labelColor = UIColor(named: "subGray") ?? .white
+        let valueColor = UIColor(named: "primaryWhite") ?? .white
+
+        userNameTextField.attributedText = "Username:  \(user.login)"
+            .toAttributedLabel(value: user.login,
+                               labelColor: labelColor,
+                               valueColor: valueColor)
+        fullNameTextField.attributedText = "Fullname:  \(user.name)"
+            .toAttributedLabel(value: user.name,
+                               labelColor: labelColor,
+                               valueColor: valueColor)
+        followersTextField.attributedText = "No. of Followers:  \(user.followers)"
+            .toAttributedLabel(value: String(user.followers),
+                               labelColor: labelColor,
+                               valueColor: valueColor)
+        followingTextField.attributedText = "Following:  \(user.following)"
+            .toAttributedLabel(value: String(user.following),
+                               labelColor: labelColor,
+                               valueColor: valueColor)
         avatarImageView.image = avatarImage
     }
 
