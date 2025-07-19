@@ -91,7 +91,7 @@ class RepositoriesViewController: UIViewController {
     }
 
     private func loadReposTable(_ repos: [Repositories.List.Response]) {
-        self.repos = repos
+        self.repos = repos.filter({ $0.fork == false })
         repositoriesTableView.reloadData()
     }
     
