@@ -13,7 +13,7 @@ class UsersViewController: UIViewController {
     var selectedURL: URL?
     var selectedImage: UIImage?
     var lastId: Int = 0
-    var lastPage: Bool = false
+    var isLastPage: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +48,10 @@ class UsersViewController: UIViewController {
     }
 
     private func loadTable(with users: [Users.Lists.Response]) {
+        if users.isEmpty {
+            isLastPage = true
+            return
+        }
         usersData = usersData + users
         userListTableView.reloadData()
     }
@@ -93,7 +97,7 @@ extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == usersData.count - 1 && !lastPage {
+        if indexPath.row == usersData.count - 1 && !isLastPage {
             lastId = usersData.last?.id ?? 0
             requestUsers()
         }

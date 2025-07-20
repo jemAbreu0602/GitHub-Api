@@ -33,7 +33,7 @@ class RepositoriesViewController: UIViewController {
     var avatarImage: UIImage?
     var repos: [Repositories.List.Response] = []
     var selectedRepoURL: URL?
-    var lastPage: Bool = false
+    var isLastPage: Bool = false
     var page: Int = 1
 
     override func viewDidLoad() {
@@ -111,7 +111,7 @@ class RepositoriesViewController: UIViewController {
         let newRepos = repos.filter({ $0.fork == false })
         self.repos = self.repos + newRepos
         if repos.isEmpty {
-            lastPage = true
+            isLastPage = true
         } else {
             repositoriesTableView.reloadData()
         }
@@ -156,7 +156,7 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == repos.count - 1 {
+        if indexPath.row == repos.count - 1 && !isLastPage {
             page += 1
             requestUserRepo()
         }
