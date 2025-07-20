@@ -21,3 +21,11 @@ extension String {
         return attrString
     }
 }
+
+extension Int {
+    func compactFormat() -> String {
+        let defaultStyle = IntegerFormatStyle<Int>(locale: .current)
+        let style = defaultStyle.notation(.compactName)
+        return self.formatted(style)
+    }
+}

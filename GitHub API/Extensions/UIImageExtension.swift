@@ -9,12 +9,21 @@ import UIKit
 
 extension UIImageView {
     
-    public func imgURL(url: String, placeHolder: UIImage) {
-        if self.image == nil {
-            self.image = placeHolder
+    public func imgURL(url string: String?, placeHolder: UIImage) {
+        let imageCache = GitHubManager.shared.imageCache
+        self.image = placeHolder
+        guard
+            let string,
+            let url = URL(string: string)
+        else {
+            return
         }
 
-        guard let url = URL(string: url) else { return }
+        if let cachedImg = imageCache.object(forKey: NSString(string: string)) as? UIImage {
+            self.image = cachedImg
+            return
+        }
+
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error {
                 print(error)
@@ -26,6 +35,7 @@ extension UIImageView {
                     let image = UIImage(data: data)
                 else { return }
                 self.image = image
+                imageCache.setObject(image, forKey: NSString(string: string))
             }
         }.resume()
     }

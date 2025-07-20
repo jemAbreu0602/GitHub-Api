@@ -33,6 +33,8 @@ class RepositoriesViewController: UIViewController {
     var avatarImage: UIImage?
     var repos: [Repositories.List.Response] = []
     var selectedRepoURL: URL?
+    var lastPage: Bool = false
+    var page: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,12 +80,12 @@ class RepositoriesViewController: UIViewController {
             .toAttributedLabel(value: user.name,
                                labelColor: labelColor,
                                valueColor: valueColor)
-        followersTextField.attributedText = "No. of Followers:  \(user.followers)"
-            .toAttributedLabel(value: String(user.followers),
+        followersTextField.attributedText = "No. of Followers:  \(user.followers.compactFormat())"
+            .toAttributedLabel(value: String(user.followers.compactFormat()),
                                labelColor: labelColor,
                                valueColor: valueColor)
-        followingTextField.attributedText = "Following:  \(user.following)"
-            .toAttributedLabel(value: String(user.following),
+        followingTextField.attributedText = "Following:  \(user.following.compactFormat())"
+            .toAttributedLabel(value: String(user.following.compactFormat()),
                                labelColor: labelColor,
                                valueColor: valueColor)
         avatarImageView.image = avatarImage
@@ -91,7 +93,7 @@ class RepositoriesViewController: UIViewController {
 
     private func requestUserRepo() {
         guard let userUrl else { return }
-        let request = GitHubManager.shared.getRepos(of: userUrl)
+        let request = GitHubManager.shared.getRepos(of: userUrl, page: page)
 
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             guard
@@ -106,8 +108,13 @@ class RepositoriesViewController: UIViewController {
     }
 
     private func loadReposTable(_ repos: [Repositories.List.Response]) {
-        self.repos = repos.filter({ $0.fork == false })
-        repositoriesTableView.reloadData()
+        let newRepos = repos.filter({ $0.fork == false })
+        self.repos = self.repos + newRepos
+        if repos.isEmpty {
+            lastPage = true
+        } else {
+            repositoriesTableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -146,6 +153,13 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
         }
         selectedRepoURL = url
         performSegue(withIdentifier: "showWebRepo", sender: nil)
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == repos.count - 1 {
+            page += 1
+            requestUserRepo()
+        }
     }
 }
 

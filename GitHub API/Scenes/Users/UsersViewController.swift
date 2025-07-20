@@ -12,6 +12,8 @@ class UsersViewController: UIViewController {
     var usersData: [Users.Lists.Response] = []
     var selectedURL: URL?
     var selectedImage: UIImage?
+    var lastId: Int = 0
+    var lastPage: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,7 @@ class UsersViewController: UIViewController {
     }
 
     private func requestUsers() {
-        guard let usersListRequest = GitHubManager.shared.getUsers() else { return }
+        guard let usersListRequest = GitHubManager.shared.getUsers(String(lastId)) else { return }
 
         URLSession.shared.dataTask(with: usersListRequest) { [weak self] data, response, error in
             guard
@@ -46,7 +48,7 @@ class UsersViewController: UIViewController {
     }
 
     private func loadTable(with users: [Users.Lists.Response]) {
-        usersData = users
+        usersData = usersData + users
         userListTableView.reloadData()
     }
 
@@ -85,8 +87,15 @@ extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             return
         }
-        selectedURL = URL(string: userData.url)
+        selectedURL = URL(string: userData.url ?? "")
         selectedImage = cell.avatarImage.image
         performSegue(withIdentifier: "showRepositories", sender: nil)
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == usersData.count - 1 && !lastPage {
+            lastId = usersData.last?.id ?? 0
+            requestUsers()
+        }
     }
 }
