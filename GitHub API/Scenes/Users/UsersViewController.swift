@@ -21,8 +21,6 @@ class UsersViewController: UIViewController {
         requestUsers()
     }
 
-    
-
     private func setupUI() {
         userListTableView.register(
             .init(nibName: "UserTableViewCell", bundle: nil),

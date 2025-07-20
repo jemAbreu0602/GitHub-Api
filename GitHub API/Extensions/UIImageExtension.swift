@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImageView {
-    
+
     public func imgURL(url string: String?, placeHolder: UIImage) {
         let imageCache = GitHubManager.shared.imageCache
         self.image = placeHolder

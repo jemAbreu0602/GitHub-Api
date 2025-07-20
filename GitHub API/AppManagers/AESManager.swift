@@ -24,7 +24,7 @@ class AESManager {
         let encryptedData = Data(encrypted)
         return encryptedData.base64EncodedString()
     }
-    
+
     func decrypt(_ input: String) throws -> String? {
         guard
             let data = Data(base64Encoded: input),

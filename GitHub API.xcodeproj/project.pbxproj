@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A8AD62D2E2D0D34008AC9F7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8AD62C2E2D0D34008AC9F7 /* WebKit.framework */; };
 		6D790DC31A42BBF3C8052B47 /* libPods-GitHub API.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB1082A2F6536E9B678D88F /* libPods-GitHub API.a */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		0EE4B2025CC1B507C09141F0 /* Pods-GitHub API.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub API.debug.xcconfig"; path = "Target Support Files/Pods-GitHub API/Pods-GitHub API.debug.xcconfig"; sourceTree = "<group>"; };
+		2A8AD62C2E2D0D34008AC9F7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		2AF0191F2E2A6AFE006D9A25 /* GitHub API.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GitHub API.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF019352E2A6B02006D9A25 /* GitHub APITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GitHub APITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF0193F2E2A6B02006D9A25 /* GitHub APIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GitHub APIUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A8AD62D2E2D0D34008AC9F7 /* WebKit.framework in Frameworks */,
 				6D790DC31A42BBF3C8052B47 /* libPods-GitHub API.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +109,7 @@
 		4C3E390DBE80BC8386127EE8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A8AD62C2E2D0D34008AC9F7 /* WebKit.framework */,
 				EAB1082A2F6536E9B678D88F /* libPods-GitHub API.a */,
 			);
 			name = Frameworks;

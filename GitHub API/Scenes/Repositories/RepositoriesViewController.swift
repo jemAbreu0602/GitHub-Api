@@ -20,15 +20,6 @@ class RepositoriesViewController: UIViewController {
         dismiss(animated: true)
     }
 
-    lazy var repoWebView: WKWebView = {
-        let webConfig = WKWebViewConfiguration()
-        let webView = WKWebView(frame: .zero, configuration: webConfig)
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.navigationDelegate = self
-        webView.uiDelegate = self
-        return webView
-    }()
-
     var userUrl: URL?
     var avatarImage: UIImage?
     var repos: [Repositories.List.Response] = []
@@ -161,8 +152,4 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
             requestUserRepo()
         }
     }
-}
-
-extension RepositoriesViewController: WKNavigationDelegate, WKUIDelegate {
-    
 }
