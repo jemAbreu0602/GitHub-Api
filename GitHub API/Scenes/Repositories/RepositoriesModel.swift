@@ -12,6 +12,7 @@ struct Repositories {
             let name: String
             let followers: Int
             let following: Int
+            let bio: String?
         }
     }
     enum List {

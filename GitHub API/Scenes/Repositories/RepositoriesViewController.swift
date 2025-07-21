@@ -10,10 +10,12 @@ import WebKit
 
 class RepositoriesViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var userNameTextField: UITextField!
-    @IBOutlet weak var fullNameTextField: UITextField!
-    @IBOutlet weak var followersTextField: UITextField!
-    @IBOutlet weak var followingTextField: UITextField!
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var followersLabel: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
+
     @IBOutlet weak var repositoriesTableView: UITableView!
 
     @IBAction func onClose(_ sender: Any) {
@@ -60,25 +62,11 @@ class RepositoriesViewController: UIViewController {
     }
 
     private func loadUserInfo(_ user: Repositories.UserInfo.Response) {
-        let labelColor = UIColor(named: "subGray") ?? .white
-        let valueColor = UIColor(named: "primaryWhite") ?? .white
-
-        userNameTextField.attributedText = "Username:  \(user.login)"
-            .toAttributedLabel(value: user.login,
-                               labelColor: labelColor,
-                               valueColor: valueColor)
-        fullNameTextField.attributedText = "Fullname:  \(user.name)"
-            .toAttributedLabel(value: user.name,
-                               labelColor: labelColor,
-                               valueColor: valueColor)
-        followersTextField.attributedText = "No. of Followers:  \(user.followers.compactFormat())"
-            .toAttributedLabel(value: String(user.followers.compactFormat()),
-                               labelColor: labelColor,
-                               valueColor: valueColor)
-        followingTextField.attributedText = "Following:  \(user.following.compactFormat())"
-            .toAttributedLabel(value: String(user.following.compactFormat()),
-                               labelColor: labelColor,
-                               valueColor: valueColor)
+        fullNameLabel.text = user.name
+        userNameLabel.text = user.login
+        bioLabel.text = user.bio
+        followersLabel.text = user.followers.compactFormat()
+        followingLabel.text = user.following.compactFormat()
         avatarImageView.image = avatarImage
     }
 

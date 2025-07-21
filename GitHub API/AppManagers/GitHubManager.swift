@@ -32,6 +32,9 @@ class GitHubManager {
     func getDetailedUser(_ userUrl: URL) -> URLRequest {
         var request = URLRequest(url: userUrl)
         request.httpMethod = getMethod
+        if let token = try? AESManager.shared.decrypt(auth) {
+            request.addValue(token.bearer, forHTTPHeaderField: authorization)
+        }
         return request
     }
 
@@ -39,6 +42,9 @@ class GitHubManager {
         let url = userUrl.appending(path: "repos").appending(queryItems: [.init(name: "page", value: String(page))])
         var request = URLRequest(url: url)
         request.httpMethod = getMethod
+        if let token = try? AESManager.shared.decrypt(auth) {
+            request.addValue(token.bearer, forHTTPHeaderField: authorization)
+        }
         return request
     }
 }
